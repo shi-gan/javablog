@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 
 /**
- * github测试 远程
+ * github测试 这是分支
  * 管理人员的Controller层
  *
  * @author TyCoding
@@ -25,6 +25,7 @@ import javax.servlet.http.HttpSession;
 public class AdminController {
 
     /**
+     *
      * 注入service
      */
     @Autowired
