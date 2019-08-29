@@ -93,7 +93,7 @@
 
     <div class="layui-footer">
         <!-- 底部固定区域 -->
-        <strong>© 后台管理系统&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---->&nbsp;Create by TyCoding</strong>
+        <strong>© 后台管理系统&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---->&nbsp;Create by NiZhiPeng</strong>
         <strong class="layui-layout-right">系统时间：<%=nowDate%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
     </div>
 </div>

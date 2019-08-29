@@ -22,6 +22,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="<%=basePath%>/static/layui/css/layui.css"/>
     <link rel="stylesheet" href="<%=basePath%>/static/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="<%=basePath%>/static/editormd/editormd.min.css"/>
 </head>
 <body>
 <div class="container">
@@ -53,7 +54,22 @@
             <br/>
             <label><strong>文章内容</strong></label>
             <!-- 加载Markdown富文本容器 -->
-            <div id="content" class="form-control">${article.r_content}</div>
+            <%--<div id="content">--%>
+                <%--&lt;%&ndash;存放md数据&ndash;%&gt;--%>
+                <%--<textarea id="append-test" style="display:none;">--%>
+                    <%--${article.r_content}--%>
+                <%--</textarea>--%>
+            <%--</div>--%>
+
+            <%--<div id="content" class="form-control">${article.r_content}</div>--%>
+
+            <div id="editormd_update">
+                <%--左边--%>
+                <textarea class="editormd-markdown-textarea" name="editormd-markdown-doc">${article.r_content}</textarea>
+
+                <textarea class="editormd-html-textarea" name="editormd-html-code"></textarea>
+            </div>
+
             <div class="layui-inline" style="margin-top: 20px;">
                 <button type="button" id="verifyBtn" class="layui-btn">存入草稿箱</button>
                 <button type="button" id="publishBtn" class="layui-btn">发布</button>
@@ -79,21 +95,6 @@
 <script src="<%=basePath%>/static/editormd/lib/jquery.flowchart.min.js"></script>
 <script src="<%=basePath%>/static/editormd/editormd.min.js"></script>
 <script type="text/javascript">
-    var markdown;
-    $(function(){
-        markdown = editormd.markdownToHTML('content',{
-            htmlDecode: "style,script,iframe",
-            syncScrolling: 'single',
-            emoji: true,
-            taskList: true,
-            tex: true,
-            flowChart: true,
-            sequenceDiagram: true,
-            codeFold: true
-        });
-    });
-</script>
-<script type="text/javascript">
     <!-- 初始化layui -->
     layui.use('element', function(){
         var element = layui.element;
@@ -105,13 +106,51 @@
         });
     });
 </script>
+
+<%--显示添加和编辑后的效果--%>
+
+<%--<script type="text/javascript">--%>
+    <%--var markdown;--%>
+    <%--$(function(){--%>
+        <%--markdown = editormd.markdownToHTML('content',{--%>
+
+            <%--htmlDecode: "style,script,iframe",--%>
+            <%--syncScrolling: 'single',--%>
+            <%--emoji: true,--%>
+            <%--taskList: true,--%>
+            <%--tex: true,--%>
+            <%--flowChart: true,--%>
+            <%--sequenceDiagram: true,--%>
+            <%--codeFold: true--%>
+        <%--});--%>
+    <%--});--%>
+<%--</script>--%>
+
+
+<script type="text/javascript">
+    var markdown;
+    $(function(){
+        // editormd放markdown编辑器的位置的id
+        markdown = editormd("editormd_update",{
+            width: '100%',
+            height: '80%',
+            syncScrolling: 'single',
+            // lib目录
+            path: '<%=basePath%>/static/editormd/lib/',
+            saveHTMLToTextarea: true,
+            //下面这一行将使用dark主题
+            previewTheme : "dark"
+        });
+    });
+</script>
+
 <script type="text/javascript">
     // 如果点击了存入草稿箱
     $("#verifyBtn").click(function(){
         var r_id = $("#r_id").val();
         var r_author = $("#r_author").val();
         var r_summary = $("#r_summary").val();
-        var r_content = ue.getContent();
+        var r_content = markdown.getMarkdown();
         var r_date = $("#r_date").val();
         var r_verify = 1;
         var r_publish = 0;
@@ -146,7 +185,7 @@
         var r_id = $("#r_id").val();
         var r_author = $("#r_author").val();
         var r_summary = $("#r_summary").val();
-        var r_content = ue.getContent();
+        var r_content = markdown.getMarkdown();
         var r_date = $("#r_date").val();
         var r_verify = 1;
         var r_publish = 1;

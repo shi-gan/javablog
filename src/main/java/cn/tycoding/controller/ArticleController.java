@@ -87,9 +87,9 @@ public class ArticleController {
                              HttpServletRequest request,
                              Model model) {
         // 封装分页数据
-        String verify = request.getParameter("r_verify");
-        String publish = request.getParameter("r_publish");
-        String status = request.getParameter("r_status");
+        String verify = request.getParameter("r_verify");  // 是否已审核
+        String publish = request.getParameter("r_publish");// 是否已发布
+        String status = request.getParameter("r_status");  // 是否已删除
         int r_verify = 0, r_publish = 0, r_status = 0;
         if (verify != null) {
             if (verify.equals("已审核")) {
@@ -114,7 +114,7 @@ public class ArticleController {
         }
         Map<String, Object> conMap = new HashMap<String, Object>();
         conMap.put("r_verify", r_verify);
-        conMap.put("r_publish", r_publish);
+        conMap.put("r_publish", r_publish);   // 用于筛选的参数
         conMap.put("r_status", r_status);
 
         //把状态码也放入Map集合中

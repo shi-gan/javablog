@@ -4,11 +4,11 @@
 
 <mapper namespace="cn.tycoding.mapper.AdminMapper">
 
-    <resultMap id="AdminBaseMap" type="cn.tycoding.pojo.Admin">
-        <id property="a_id" column="a_id" jdbcType="INTEGER"/>
-        <result property="a_name" column="a_name" jdbcType="VARCHAR"/>
-        <result property="a_password" column="a_password" jdbcType="VARCHAR"/>
-    </resultMap>
+    <!--<resultMap id="AdminBaseMap" type="cn.tycoding.pojo.Admin">-->
+        <!--<id property="a_id" column="a_id" jdbcType="INTEGER"/>-->
+        <!--<result property="a_name" column="a_name" jdbcType="VARCHAR"/>-->
+        <!--<result property="a_password" column="a_password" jdbcType="VARCHAR"/>-->
+    <!--</resultMap>-->
 
     <!-- 登录的功能 -->
     <select id="login" resultType="cn.tycoding.pojo.Admin" parameterType="String">

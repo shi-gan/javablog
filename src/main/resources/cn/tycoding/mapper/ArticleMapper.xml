@@ -36,15 +36,9 @@
 
     <!-- 保存文章信息的方法 -->
     <insert id="saveArticle" parameterType="cn.tycoding.pojo.Article">
-        insert into article(
-          r_author,
-          r_summary,
-          r_content,
-          r_date,
-          r_verify,
-          r_publish,
-          r_status)
+        insert into article
         values(
+          null,
           #{r_author},
           #{r_summary},
           #{r_content},

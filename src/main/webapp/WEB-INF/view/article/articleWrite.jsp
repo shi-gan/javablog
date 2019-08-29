@@ -97,12 +97,16 @@
 <script type="text/javascript">
     var markdown;
     $(function(){
-        markdown=editormd("editormd",{
+        // editormd放markdown编辑器的位置的id
+        markdown = editormd("editormd",{
             width: '100%',
             height: '80%',
             syncScrolling: 'single',
+            // lib目录
             path: '<%=basePath%>/static/editormd/lib/',
-            saveHTMLToTextarea: true
+            saveHTMLToTextarea: true,
+            //下面这一行将使用dark主题
+            previewTheme : "dark"
         });
     });
 </script>
@@ -112,6 +116,7 @@
         var r_id = $("#r_id").val();
         var r_author = $("#r_author").val();
         var r_summary = $("#r_summary").val();
+        // 从Markdown中获得文章内容
         var r_content = markdown.getMarkdown();
         var r_date = $("#r_date").val();
         var r_verify = 1;
