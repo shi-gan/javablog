@@ -1,26 +1,22 @@
-package cn.tycoding.mapper;
+package cn.nizhipeng.service;
 
-import cn.tycoding.pojo.Article;
-import cn.tycoding.pojo.Reply;
-import cn.tycoding.pojo.Words;
+import cn.nizhipeng.domain.Article;
+import cn.nizhipeng.domain.PageBean;
+import cn.nizhipeng.domain.Reply;
+import cn.nizhipeng.domain.Words;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * @author TyCoding
- * @date 18-4-30上午9:50
+ * @date 2018/5/3 上午8:36
  */
-public interface ArticleMapper {
+public interface ArticleService {
 
     void saveArticle(Article article);
 
-    int selectCount();
-
-    List<Article> findByPage(HashMap<String, Object> map);
-
-    List<Article> findConByPage(Map<String, Object> conMap);
+    PageBean<Article> findByPage(int pageCode, int pageSize, Map<String, Object> conMap);
 
     void delete(int r_id);
 
@@ -29,8 +25,6 @@ public interface ArticleMapper {
     Article findById(int r_id);
 
     void clean(int r_id);
-
-    int selectCount2();
 
     void restore(int r_id);
 

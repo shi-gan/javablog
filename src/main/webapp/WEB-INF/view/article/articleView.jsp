@@ -48,7 +48,7 @@
         </div>
         <div>
             &nbsp;&nbsp;&nbsp;&nbsp;<strong style="font-size:18px;">版权声明：&nbsp;&nbsp;</strong>
-            <span style="font-size:16px;">本项目所有解释权归<strong>TyCoding</strong>所有</span>
+            <span style="font-size:16px;">本项目所有解释权归<strong>NiZhiPeng</strong>所有</span>
         </div>
         <br/>
     </div>
@@ -200,6 +200,7 @@
         });
     });
 </script>
+
 <script type="text/javascript">
     function btnReplyClick(elem) {
         var $ = layui.jquery;

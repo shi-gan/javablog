@@ -1,4 +1,4 @@
-package cn.tycoding.pojo;
+package cn.nizhipeng.domain;
 
 import java.io.Serializable;
 import java.util.List;

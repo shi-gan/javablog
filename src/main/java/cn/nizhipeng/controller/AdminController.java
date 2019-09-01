@@ -1,7 +1,7 @@
-package cn.tycoding.controller;
+package cn.nizhipeng.controller;
 
-import cn.tycoding.pojo.Admin;
-import cn.tycoding.service.AdminService;
+import cn.nizhipeng.domain.Admin;
+import cn.nizhipeng.service.AdminService;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

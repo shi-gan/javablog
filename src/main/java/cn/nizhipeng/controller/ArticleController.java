@@ -1,9 +1,9 @@
-package cn.tycoding.controller;
+package cn.nizhipeng.controller;
 
-import cn.tycoding.pojo.Article;
-import cn.tycoding.pojo.Reply;
-import cn.tycoding.pojo.Words;
-import cn.tycoding.service.ArticleService;
+import cn.nizhipeng.domain.Article;
+import cn.nizhipeng.domain.Reply;
+import cn.nizhipeng.domain.Words;
+import cn.nizhipeng.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -81,9 +81,9 @@ public class ArticleController {
     /**
      * 分页查询
      */
-    @RequestMapping(value = "/findByPage")
+    @RequestMapping(value = "/findByPage")                             // 默认起始页  和  一页显示的数量
     public String findByPage(@RequestParam(value = "pageCode", defaultValue = "1", required = false) int pageCode,
-                             @RequestParam(value = "pageSize", defaultValue = "3", required = false) int pageSize,
+                             @RequestParam(value = "pageSize", defaultValue = "5", required = false) int pageSize,
                              HttpServletRequest request,
                              Model model) {
         // 封装分页数据

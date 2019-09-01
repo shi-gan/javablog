@@ -1,6 +1,6 @@
-package cn.tycoding.service;
+package cn.nizhipeng.service;
 
-import cn.tycoding.pojo.Admin;
+import cn.nizhipeng.domain.Admin;
 
 public interface AdminService {
 

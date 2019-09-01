@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.tycoding.mapper.ArticleMapper">
+<mapper namespace="cn.nizhipeng.dao.ArticleMapper">
 
-    <resultMap id="BaseMap" type="cn.tycoding.pojo.Article">
+    <resultMap id="BaseMap" type="cn.nizhipeng.domain.Article">
         <id property="r_id" column="r_id" jdbcType="INTEGER"/>
         <result property="r_author" column="r_author" jdbcType="VARCHAR"/>
         <result property="r_summary" column="r_summary" jdbcType="VARCHAR"/>
@@ -15,7 +15,7 @@
         <result property="r_status" column="r_status" jdbcType="INTEGER"/>
     </resultMap>
 
-    <resultMap id="WordsBaseMap" type="cn.tycoding.pojo.Words">
+    <resultMap id="WordsBaseMap" type="cn.nizhipeng.domain.Words">
         <id column="lw_id" property="lw_id" jdbcType="INTEGER"/>
         <result column="lw_name" property="lw_name" jdbcType="VARCHAR"/>
         <result column="lw_date" property="lw_date" jdbcType="VARCHAR"/>
@@ -24,7 +24,7 @@
         <result column="lw_for_article_id" property="lw_for_article_id" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <resultMap id="ReplyBaseMap" type="cn.tycoding.pojo.Reply">
+    <resultMap id="ReplyBaseMap" type="cn.nizhipeng.domain.Reply">
         <id column="lr_id" property="lr_id" jdbcType="INTEGER"/>
         <result column="lr_name" property="lr_name" jdbcType="VARCHAR"/>
         <result column="lr_date" property="lr_date" jdbcType="VARCHAR"/>
@@ -35,7 +35,7 @@
     </resultMap>
 
     <!-- 保存文章信息的方法 -->
-    <insert id="saveArticle" parameterType="cn.tycoding.pojo.Article">
+    <insert id="saveArticle" parameterType="cn.nizhipeng.domain.Article">
         insert into article
         values(
           null,
@@ -106,7 +106,7 @@
     </delete>
 
     <!-- 更新功能 -->
-    <update id="update" parameterType="cn.tycoding.pojo.Article">
+    <update id="update" parameterType="cn.nizhipeng.domain.Article">
         update article set
           r_id        = #{r_id},
           r_author    = #{r_author},
@@ -120,7 +120,7 @@
     </update>
 
     <!-- 根据ID查询 -->
-    <select id="findById" parameterType="int" resultType="cn.tycoding.pojo.Article">
+    <select id="findById" parameterType="int" resultType="cn.nizhipeng.domain.Article">
         select * from article where r_id = #{r_id}
     </select>
 
@@ -135,7 +135,7 @@
     </update>
 
     <!-- 保存留言信息 -->
-    <insert id="saveWords" parameterType="cn.tycoding.pojo.Words">
+    <insert id="saveWords" parameterType="cn.nizhipeng.domain.Words">
         insert into words(
           lw_name,
           lw_date,
@@ -153,7 +153,7 @@
     </insert>
 
     <!-- 保存回复信息 -->
-    <insert id="saveReply" parameterType="cn.tycoding.pojo.Reply">
+    <insert id="saveReply" parameterType="cn.nizhipeng.domain.Reply">
         insert into reply(
           lr_name,
           lr_date,

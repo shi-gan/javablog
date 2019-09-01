@@ -1,11 +1,11 @@
-package cn.tycoding.service.impl;
+package cn.nizhipeng.service.impl;
 
-import cn.tycoding.mapper.ArticleMapper;
-import cn.tycoding.pojo.Article;
-import cn.tycoding.pojo.PageBean;
-import cn.tycoding.pojo.Reply;
-import cn.tycoding.pojo.Words;
-import cn.tycoding.service.ArticleService;
+import cn.nizhipeng.dao.ArticleMapper;
+import cn.nizhipeng.domain.Article;
+import cn.nizhipeng.domain.PageBean;
+import cn.nizhipeng.domain.Reply;
+import cn.nizhipeng.domain.Words;
+import cn.nizhipeng.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +14,17 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author TyCoding
- * @date 2018/5/3 上午8:36
+ * @author nizhipeng
+ * @date
  */
 @Service
 public class ArticleServiceImpl implements ArticleService {
 
     /**
-     * 注入Mapper层
+     * 注入dao层
      */
     @Autowired
-    private ArticleMapper articleMapper;
+    private ArticleMapper articleMapper;  //service层注入dao
 
     /**
      * 添加文章信息

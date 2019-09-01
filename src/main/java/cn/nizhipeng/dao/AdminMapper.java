@@ -1,6 +1,6 @@
-package cn.tycoding.mapper;
+package cn.nizhipeng.dao;
 
-import cn.tycoding.pojo.Admin;
+import cn.nizhipeng.domain.Admin;
 
 public interface AdminMapper {
     

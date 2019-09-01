@@ -110,7 +110,7 @@
     function toArticleManage() {
         document.getElementById("content").innerHTML = "<object type=\"text/html\" data=\"<%=basePath%>/article/toArticleManage.do\" width=\"100%\" height=\"100%\"></object>";
     }
-    function toArticleWrite() {                                                                             <!-- 草稿即写文章页面 -->
+    function toArticleWrite() {                                                                      <!-- 草稿即写文章页面 -->
         document.getElementById("content").innerHTML = "<object type=\"text/html\" data=\"<%=basePath%>/article/toArticleWrite.do\" width=\"100%\" height=\"100%\"></object>";
     }
     function toArticleTrash() {
