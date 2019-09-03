@@ -21,7 +21,7 @@ public class PageBean<T> implements Serializable {
     //每页显示的记录条数
     private int pageSize;
 
-    //每页显示的记录条数
+    //每页显示的  T   Article
     private List<T> beanList;
 
     public int getPageCode() {

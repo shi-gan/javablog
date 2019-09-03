@@ -7,7 +7,7 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- 配置注解扫描 的 包路径             开启注解 -->
+    <!-- 配置注解扫描 的 包路径           service层  开启注解 -->
     <context:component-scan base-package="cn.nizhipeng.service"/>
 
     <!-- 加载数据库配置文件 -->

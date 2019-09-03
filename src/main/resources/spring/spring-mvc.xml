@@ -16,7 +16,7 @@
          http://www.springframework.org/schema/mvc
          http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <!-- 开启    注解扫描 -->
+    <!-- 开启    注解扫描   controller层有注解 -->
     <context:component-scan base-package="cn.nizhipeng.controller"/>
 
     <!-- 配置springmvc的驱动，并开启了对JSON数据格式的支持 -->

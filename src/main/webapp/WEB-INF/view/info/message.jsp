@@ -1,8 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: my-deepin
-  Date: 18-4-27
-  Time: 下午7:19
+
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page isELIgnored="false" %>

@@ -1,14 +1,10 @@
 <%@ page import="java.text.DecimalFormat" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.Date" %><%--
-  Created by IntelliJ IDEA.
-  User: my-deepin
-  Date: 18-4-30
-  Time: 上午9:39
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.Date" %>
+
 <%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--java语句--%>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path;
@@ -39,16 +35,19 @@
             <div class="layui-inline" style="margin-left: -10px;">
                 <label class="layui-form-label" style="padding-left: 0;"><strong>文章作者</strong></label>
                 <div class="layui-input-inline" style="margin-left:-255px;">
+                         <%--name这个数据是登录/注册时候得到的  属于Admin 登录后 保存在session中的名字  键为name  现在给Article--%>
                     <input type="text" name="r_author" id="r_author" value="${sessionScope.name}" class="layui-input"/>
                 </div>
                 <label class="layui-form-label" style="margin-left:169px;padding-left: 0;"><strong>发布日期</strong></label>
                 <div class="layui-input-inline" style="margin-left: 88px;">
+                                                                       <%--当前日期--%>
                     <input type="text" name="r_date" id="r_date" value="<%=nowDate%>" class="layui-input" readonly="readonly"/>
                 </div>
             </div>
             <hr style="margin-top: 0;"/>
             <div class="layui-inline" style="margin-left: -10px;padding-left: 0;">
                 <label class="layui-form-label" style="padding-left: 0;"><strong>文章简介</strong></label>
+                <%--文章描述--%>
                 <div class="layui-input-inline" style="margin-left: -6px;width: 275px;">
                     <input type="text" name="r_summary" id="r_summary" placeholder="请用简短的文字介绍一下你的文章吧！" class="layui-input"/>
                 </div>
@@ -61,7 +60,7 @@
                 <textarea class="editormd-markdown-textarea" name="editormd-markdown-doc"></textarea>
                 <textarea class="editormd-html-textarea" name="editormd-html-code"></textarea>
             </div>
-            <%--传入草稿箱，发布，清空--%>
+            <%--传入草稿箱，  发布，    清空--%>
             <div class="layui-inline" style="margin-top: 20px;">
                 <button type="button" id="verifyBtn" class="layui-btn">存入草稿箱</button>
                 <button type="button" id="publishBtn" class="layui-btn">发布</button>
@@ -119,8 +118,8 @@
         // 从Markdown中获得文章内容
         var r_content = markdown.getMarkdown();
         var r_date = $("#r_date").val();
-        var r_verify = 1;
-        var r_publish = 1;
+        var r_verify = 1;  //  已审核
+        var r_publish = 1; // 发布
         var r_status = 0;
         $.ajax({
             url: '<%=basePath%>/article/saveArticle.do',
@@ -136,7 +135,7 @@
                 r_status: r_status
             },
             success: function(data){
-                $("body").html(data);
+                $("body").html(data);  // 整个body标签变成后端发送的消息
             },
             error: function(){
                 alert("错误");
@@ -151,8 +150,8 @@
         var r_summary = $("#r_summary").val();
         var r_content = markdown.getMarkdown();
         var r_date = $("#r_date").val();
-        var r_verify = 0;
-        var r_publish = 0;
+        var r_verify = 0;    //
+        var r_publish = 0;   //未发布
         var r_status = 0;
         $.ajax({
             url: '<%=basePath%>/article/saveArticle.do',

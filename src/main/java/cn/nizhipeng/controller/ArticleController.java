@@ -57,20 +57,21 @@ public class ArticleController {
      * 跳转到回收站页面
      */
     @RequestMapping(value = "/toArticleTrash")
-    public String toArticleTrash() {
+    public String toArticleTrash() {    // 跳转页面不传递参数  ，无参
         //设置这个状态码为1表示我访问的是回收站页面
         goId = 1;
-        return "redirect:findByPage.do";
+        return "redirect:findByPage.do";   //重定向到controller层
     }
 
     /**
      * 保存文章
      */
     @RequestMapping(value = "/saveArticle")
+    //                 表单中的name值与 pojo即Article中的属性名一致
     public String saveArticle(Article article, Model model) {
         try {
-            articleService.saveArticle(article);
-            model.addAttribute("message", "文章添加成功");
+            articleService.saveArticle(article);  // 和数据库相关
+            model.addAttribute("message", "文章添加成功");  //在页面显示
             return "view/info/message";
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,7 +91,12 @@ public class ArticleController {
         String verify = request.getParameter("r_verify");  // 是否已审核
         String publish = request.getParameter("r_publish");// 是否已发布
         String status = request.getParameter("r_status");  // 是否已删除
-        int r_verify = 0, r_publish = 0, r_status = 0;
+
+        String r_author = request.getParameter("a_name");
+
+        //初始值
+        Integer r_verify = null, r_publish = null, r_status = null;
+
         if (verify != null) {
             if (verify.equals("已审核")) {
                 r_verify = 1;
@@ -101,13 +107,13 @@ public class ArticleController {
         if (publish != null) {
             if (publish.equals("已发布")) {
                 r_publish = 1;
-            } else if (verify.equals("未发布")) {
+            } else if (publish.equals("未发布")) {
                 r_publish = 0;
             }
         }
         if (status != null) {
             if (status.equals("存在")) {
-                r_status = 0;
+                r_status = 0;  // 存在
             } else if (status.equals("已删除")) {
                 r_status = 1;
             }
@@ -116,17 +122,21 @@ public class ArticleController {
         conMap.put("r_verify", r_verify);
         conMap.put("r_publish", r_publish);   // 用于筛选的参数
         conMap.put("r_status", r_status);
+        conMap.put("r_author", r_author);
 
         //把状态码也放入Map集合中
         conMap.put("goId", goId);
 
-        //回显数据
+        //回显数据            要显示的数据全都保存在page 中 这些是根据提交筛选出来的文章数据beanList
         model.addAttribute("page", articleService.findByPage(pageCode, pageSize, conMap));
-        if (goId == 1) {
+        if (goId == 1) {  // 为1 为回收页面
             return "/view/article/articleTrash";
         }
-        return "view/article/articleManage";
+        return "view/article/articleManage";  // 回到原展示页面
     }
+
+
+
 
     /**
      * 删除功能
@@ -144,10 +154,10 @@ public class ArticleController {
     @RequestMapping(value = "/toEditPage")
     public String editPage(@RequestParam int r_id, Model model) {
         //先去查询
-        Article article = articleService.findById(r_id);
+        Article article = articleService.findById(r_id);  // 根据文章id 得到 该文章的全部信息
         if (article != null) {
-            model.addAttribute("article", article);
-            return "view/article/articleUpdate";
+            model.addAttribute("article", article);  // 携带文章信息
+            return "view/article/articleUpdate";  // 进入文章更新页
         } else {
             return null;
         }

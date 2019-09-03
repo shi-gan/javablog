@@ -86,6 +86,10 @@
         <if test="goId == 1">
             where r_status = 1
         </if>
+
+        <if test="r_author != null and r_author != ''">
+            and r_author like "%"#{r_author}"%"
+        </if>
         <if test="r_verify != null and r_verify != ''">
             and r_verify = #{r_verify}
         </if>

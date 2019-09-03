@@ -34,6 +34,7 @@
         <hr style="margin-top: 0;"/>
         <div class="form table">
             <div>
+                <%--查询处--%>
                 <form class="layui-form form-inline" action="<%=basePath%>/article/findByPage.do" role="form" method="post">
                     <div class="layui-form-item">
                         <label class="layui-form-label" style="margin-left: -10px;padding-left:0;"><strong>文章作者</strong></label>
@@ -91,25 +92,33 @@
     <br/>
     <div class="table-responsive">
         <table class="table table-striped table-hover" id="countTable">
+            <%--标题栏--%>
             <thead>
-            <tr>
-                <th style="text-align: center"><input type="checkbox" id="all"/></th>
-                <th style="text-align:center;">文章编号</th>
-                <th style="text-align: center">文章简介</th>
-                <th style="text-align: center">文章作者</th>
-                <th style="text-align: center">发表日期</th>
-                <c:if test="${sessionScope.identity_id ne 4}">
-                    <th style="text-align: center">审核状态</th>
-                    <th style="text-align: center">发布状态</th>
-                    <th style="text-align: center">存在状态</th>
-                    <th style="text-align: center;">操作</th>
-                </c:if>
-            </tr>
+                <tr>
+                    <th style="text-align: center">
+                        <button type="button" id="all" class="layui-btn layui-btn layui-btn-sm">全选</button>
+                    </th>
+
+                    <th style="text-align:center;">文章编号</th>
+                    <th style="text-align: center">文章简介</th>
+                    <th style="text-align: center">文章作者</th>
+                    <th style="text-align: center">发表日期</th>
+                    <c:if test="${sessionScope.identity_id ne 4}">
+                        <th style="text-align: center">审核状态</th>
+                        <th style="text-align: center">发布状态</th>
+                        <th style="text-align: center">存在状态</th>
+                        <th style="text-align: center;">操作</th>
+                    </c:if>
+                </tr>
             </thead>
+            <%--列表内容    --%>
             <tbody style="text-align: center">
+                            <%--查询出来的文章内容集合--%>
             <c:forEach items="${requestScope.page.beanList}" var="article">
                 <tr>
-                    <td><input name="r_id" value="${article.r_id}" type="checkbox"/></td>
+                    <%--挑选框--%>
+                    <td><input id="r_id" name="r_id" value="${article.r_id}" type="checkbox"/></td>
+
                     <td>${article.r_id}</td>
                     <td>${article.r_summary}</td>
                     <td>${article.r_author}</td>
@@ -218,6 +227,7 @@
                                 <c:set var="begin" value="${requestScope.page.totalPage -4}"/>
                                 <c:set var="end" value="${requestScope.page.totalPage}"/>
                             </c:if>
+
                         </c:otherwise>
                     </c:choose>
 
@@ -239,6 +249,7 @@
                             <a href="<%=basePath%>/article/findByPage.do?pageCode=${requestScope.page.pageCode + 1}">&raquo;</a>
                         </c:if>
                     </li>
+
                     <li>
                         <a href="<%=basePath%>/article/findByPage.do?pageCode=${requestScope.page.totalPage}"><strong>末页</strong></a>
                     </li>
@@ -248,6 +259,7 @@
     </form>
 </div>
 </body>
+<%--<script src="jquery-3.2.1.min.js"></script--%>
 <script src="<%=basePath%>/static/js/jquery-3.3.1.min.js"></script>
 <script src="<%=basePath%>/static/layui/layui.all.js"></script>
 <script src="<%=basePath%>/static/js/bootstrap.min.js"></script>
@@ -317,13 +329,33 @@
         });
     });
 
-    //全选
-    var all = $("#all");
-    var id = $("#a_id");
-    all.onclick = function(){
-        for (var i = 0;i<id.length;i++){
-            id[i].checked = all.checked;
+    // //全选
+    // var all = $("#all");
+    // var id = $("#r_id");
+    // all.onclick = function(){
+    //     for (var i = 0;i<id.length;i++){
+    //         id[i].checked = all.checked;
+    //     }
+    // };
+
+    // 全选
+
+    $("#all").click(function () {
+        $(":checkbox").prop("checked", true); //true让所有全部选中
+    });
+
+    // 点击取消
+    // 1. 找checkbox
+    // 2. 全部取消选中  --> prop("checked", false);
+    $("#cancel").click(function () {
+        if ($("#all").value = "checked") {
+            $(":checkbox").prop("checked", false); //false所有全部取消
         }
-    }
+    });
+
+
+
+
+
 </script>
 </html>

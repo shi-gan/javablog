@@ -46,7 +46,7 @@ public class ArticleServiceImpl implements ArticleService {
         PageBean<Article> pageBean = new PageBean<Article>();
 
         //获取Controller层封装的状态码
-        Integer goId = (Integer)conMap.get("goId");
+        Integer goId = (Integer)conMap.get("goId");  // 回收页面还是管理页面
 
         //封装数据
         pageBean.setPageCode(pageCode);
@@ -66,11 +66,13 @@ public class ArticleServiceImpl implements ArticleService {
         //封装总页数
         double tc = totalCount;
         Double num = Math.ceil(tc / pageSize);
-        pageBean.setTotalPage(num.intValue());
+        pageBean.setTotalPage(num.intValue());// 总页数
 
         //设置limit起始位置和终止位置
         map.put("start",(pageCode - 1) * pageSize);
         map.put("size",pageBean.getPageSize());
+
+        System.out.println("map: "+map);  // 该页数据起始和 大小
 
         //封装每页显示的数据
         List<Article> list = articleMapper.findByPage(map);
@@ -80,13 +82,22 @@ public class ArticleServiceImpl implements ArticleService {
             System.out.println(obj);
         }
 
+        System.out.println("===================");
+
+        System.out.println(pageBean.getBeanList());
+
         //条件查询的封装
         conMap.put("start",(pageCode - 1) * pageSize);
         conMap.put("size",pageBean.getPageSize());
 
+        System.out.println("conMap:"+conMap);  // conMap中携带条件查询信息
+
         List<Article> conList = articleMapper.findConByPage(conMap);
         pageBean.setBeanList(conList);
-        return pageBean;
+
+        System.out.println("con"+pageBean.getBeanList());
+
+        return pageBean;   // 查询的数据
     }
 
     /**

@@ -48,14 +48,14 @@ public class AdminController {
         Admin admin = adminService.login(a_name);//查找用户
         if (admin != null) { //找到了该用户
             if (admin.getA_password().equals(a_password)) {
-                session.setAttribute("name", admin.getA_name());
+                session.setAttribute("name", admin.getA_name());  // session
                 return "view/page";
             } else {          // 找到该用户但是密码错了
                 model.addAttribute("message", "用户名或密码错误");
                 return "view/login/info";
             }
         } else {   // 没找到该用户
-            model.addAttribute("message", "登录失败");
+            model.addAttribute("message", "登录失败");  // 页面可以通过message 得到返回的信息
             return "view/login/info";
         }
     }
@@ -66,7 +66,7 @@ public class AdminController {
     @RequestMapping(value = "/register")
     public String register(Admin admin, HttpSession session) {
         adminService.insert(admin);
-        session.setAttribute("name", admin.getA_name());
+        session.setAttribute("name", admin.getA_name());    // session
         return "view/page";
     }
 
@@ -75,7 +75,7 @@ public class AdminController {
      */
     @RequestMapping(value = "/outLogin")
     public String outLogin(HttpSession session) {
-        session.invalidate();
+        session.invalidate();// 消除session 跳到主页
         return "index";
     }
 
