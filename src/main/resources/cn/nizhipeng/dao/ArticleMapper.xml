@@ -90,13 +90,16 @@
         <if test="r_author != null and r_author != ''">
             and r_author like "%"#{r_author}"%"
         </if>
-        <if test="r_verify != null and r_verify != ''">
+        <if test="r_verify != null">
             and r_verify = #{r_verify}
         </if>
-        <if test="r_publish != null and r_publish != ''">
+
+        <!--  r_publish 是 Integer类型的 判断 r_publish!='' -->
+
+        <if test="r_publish != null">
             and r_publish = #{r_publish}
         </if>
-        <if test="r_status != null and r_status != ''">
+        <if test="r_status != null">
             and r_status = #{r_status}
         </if>
         <if test="start != null and size != null">
